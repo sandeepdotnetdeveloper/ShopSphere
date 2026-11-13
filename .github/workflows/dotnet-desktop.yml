@@ -1,3 +1,4 @@
+
 name: ShopSphere CI Pipeline
 
 on:
@@ -31,9 +32,9 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
-      # Step 3: Restore API dependencies
-      - name: Restore API Dependencies
-        run: dotnet restore ShopSphere.Api/ShopSphere.Api.csproj
+      # Step 3: Restore API and Test dependencies
+      - name: Restore Dependencies
+        run: dotnet restore ShopSphere.Tests/ShopSphere.Tests.csproj
 
       # Step 4: Build the test project and API
       - name: Build Solution
@@ -41,4 +42,4 @@ jobs:
 
       # Step 5: Run automated tests
       - name: Run Unit Tests
-        run: dotnet test ShopSphere.Tests/ShopSphere.Tests.csproj --configuration Release --no-build
+        run: dotnet test ShopSphere.Tests/ShopSphere.Tests.csproj --configuration Release --no-build --verbosity normal
