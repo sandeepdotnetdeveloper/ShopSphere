@@ -52,7 +52,7 @@ namespace ShopSphere.Tests
             // Act
             var result = catalog.Add(product);
 
-            // Assertfgdfkgh
+            // Assertfgdfkghghg
             Assert.Equal(4, result.Id);
             Assert.Equal("Gaming Headset", result.Name);
         }
