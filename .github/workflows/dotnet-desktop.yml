@@ -1,0 +1,44 @@
+name: ShopSphere CI Pipeline
+
+on:
+  push:
+    branches:
+      - master
+
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+
+    name: Build and Test ShopSphere
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # Step 1: Download source code
+      - name: Checkout Source Code
+        uses: actions/checkout@v6
+
+      # Step 2: Install .NET SDK
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '10.0.x'
+
+      # Step 3: Restore API dependencies
+      - name: Restore API Dependencies
+        run: dotnet restore ShopSphere.Api/ShopSphere.Api.csproj
+
+      # Step 4: Build the test project and API
+      - name: Build Solution
+        run: dotnet build ShopSphere.Tests/ShopSphere.Tests.csproj --configuration Release --no-restore
+
+      # Step 5: Run automated tests
+      - name: Run Unit Tests
+        run: dotnet test ShopSphere.Tests/ShopSphere.Tests.csproj --configuration Release --no-build

@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="ShopSphere.Api/ShopSphere.Api.csproj" />
+  <Project Path="ShopSphere.Tests/ShopSphere.Tests.csproj" />
+</Solution>
